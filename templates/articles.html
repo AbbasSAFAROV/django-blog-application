@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="row">
+        <div class="col-lg-8">
+                {% if posts %}
+                {% for post in posts %}
+                    <h1 class="mt-4"><a href="/article/detail/{{post.id}}">{{post.title}}</a></h1>
+                   <p class="lead">
+                       by
+                       <a href="#">{{post.author}}</a>
+                   </p>
+                   <hr>
+                   <p>Posted on {{post.created_date}}</p>
+                   <hr>
+                   {% if post.post_image %}
+                       <img class="img-fluid rounded" src="{{post.post_image.url}}" alt="">
+                   {% endif %}
+                   <hr>
+                   <p class="lead">
+                       {{post.content | safe | truncatewords:40}}
+                   </p>
+                   <hr>
+                   <a  style="float:right" href="/article/detail/{{post.id}}" class="btn btn-primary">read more</a>
+       
+               {% endfor %}
+               {% else %}
+                   <div class="alert alert-danger">Henüz Makale Paylaşılmadı</div>
+               {% endif %}      
+           </div>
+</div>
+{% endblock body %}

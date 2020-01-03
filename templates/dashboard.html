@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block body %}
+  
+{% load crispy_forms_tags %}
+      <br>
+      <h3>My Articles</h3>
+      <hr>
+      <form method = "post">
+          {% csrf_token %}
+          {{form | crispy}}
+          <br>
+          <a href="/article/addarticle" class = "btn btn-danger">Makale Ekle</a>
+          <hr>
+          {% if posts %}
+          <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Publishing Date</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                      <tr>
+                        <th scope="row">{{post.id}}</th>
+                        <td><a href="/article/detail/{{post.id}}">{{post.title}}</a></td>
+                        <td>{{post.author}}</td>
+                        <td>{{post.created_date}}</td>
+                        <td ><a href="/article/update/{{post.id}}"class = "btn btn-danger">Update</a></td>
+                        <td ><a href="/article/delete/{{post.id}}"class = "btn btn-danger">Delete</a></td>
+                    {% endfor %}
+                </tbody>
+                    
+                  
+              </table>
+          {% else %}
+            <div class = "alert alert-danger">Henüz Makaleniz Bulunmuyor</div>
+          {% endif %}
+          
+          
+      </form>
+{% endblock body %}

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+
+    <a class="navbar-brand" href="/sports">My Web Page</a>
+    
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/article/articles">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/article/myarticles">My Articles</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Leagues
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/about">About us</a>
+            <a class="dropdown-item" href="/contact">Contact</a>
+          </div>
+        </li>
+      </ul>
+      <ul class = "navbar-nav ml-auto">
+      {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link">Welcome , {{request.user.username}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/article/dashboard">Control Panel</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/user/logoutUser">Logout</a>
+        </li>
+        
+      {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="/user/register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/user/loginUser">Login</a>
+        </li>
+      {% endif %}
+           
+      </ul>
+    </div>
+  </nav>
+  <br>
